@@ -30,31 +30,55 @@ HTML CODE
                 </div>
               </div>
         </div>
+JS CODE
+const choices = ['rock', 'paper', 'scissors'];
+let playerScore = 0;
+let computerScore = 0;
+
+document.querySelectorAll('.choice-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    const playerChoice = this.dataset.choice;
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    const result = determineWinner(playerChoice, computerChoice);
+    
+    updateScore(result);
+    displayResult(playerChoice, computerChoice, result);
+  });
+});
+
+function determineWinner(player, computer) {
+  if (player === computer) return 'draw';
+  if (
+    (player === 'rock' && computer === 'scissors') ||
+    (player === 'paper' && computer === 'rock') ||
+    (player === 'scissors' && computer === 'paper')
+  ) {
+    return 'player';
+  }
+  return 'computer';
+}
+
+function updateScore(result) {
+  if (result === 'player') playerScore++;
+  if (result === 'computer') computerScore++;
+  document.getElementById('player-score').textContent = playerScore;
+  document.getElementById('computer-score').textContent = computerScore;
+}
+
+function displayResult(player, computer, result) {
+  const resultText = {
+    player: 'You win!',
+    computer: 'Computer wins!',
+    draw: "It's a draw!"
+  };
+  
+  document.getElementById('game-result').innerHTML = `
+    <p>You chose <strong>${player}</strong></p>
+    <p>Computer chose <strong>${computer}</strong></p>
+    <h4>${resultText[result]}</h4>
+  `;
+}
 CSS CODE
-.age-calculator {
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.date-input {
-    padding: 12px;
-    width: 100%;
-    margin: 15px 0;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.result-box {
-    margin-top: 20px;
-    padding: 15px;
-    background: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-JS SCRIPT
 .rps-game {
     padding: 20px;
     background: #f8f9fa;
