@@ -23,4 +23,4 @@ A responsive, interactive implementation of the classic game with score tracking
 ## Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/rock-paper-scissors.git
+   git clone https://github.com/VeilInspired/rock-paper-scissors.git
